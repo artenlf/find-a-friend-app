@@ -1,0 +1,28 @@
+{
+  "name": "find-a-friend-app",
+  "version": "1.0.0",
+  "description": "Pet Adoption app",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint src --ext .ts --fix",
+    "start:dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.19.2",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@rocketseat/eslint-config": "^2.0.1",
+    "@types/node": "^20.4.2",
+    "eslint": "^8.45.0",
+    "prisma": "^5.0.0",
+    "tsup": "^7.1.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
+  }
+}
