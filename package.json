@@ -7,22 +7,35 @@
     "lint": "eslint src --ext .ts --fix",
     "start:dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
-    "build": "tsup src --out-dir build"
+    "build": "tsup src --out-dir build",
+    "test": "vitest run --dir src/use-cases",
+    "test:watch": "vitest --dir src/use-cases",
+    "pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment",
+    "test:e2e": "vitest run --dir src/http",
+    "test:e2e:watch": "vitest --dir src/http",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.0.0",
+    "dotenv": "^16.3.1",
     "fastify": "^4.19.2",
     "zod": "^3.21.4"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.0.1",
     "@types/node": "^20.4.2",
+    "@types/supertest": "^2.0.12",
     "eslint": "^8.45.0",
     "prisma": "^5.0.0",
+    "supertest": "^6.3.3",
     "tsup": "^7.1.0",
     "tsx": "^3.12.7",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.33.0"
   }
 }
