@@ -35,4 +35,8 @@ export class InMemoryPetsRepository implements PetsRepository {
 
     return pet
   }
+
+  async searchMany(query: string) {
+    return this.pets.filter((pet) => pet.name.includes(query))
+  }
 }

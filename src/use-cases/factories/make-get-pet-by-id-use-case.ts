@@ -1,10 +1,10 @@
 import { PrismaPetsRepository } from '@/repositories/prisma/prisma-pets-repository'
-import { RegisterPetUseCase } from '../register-pets'
+import { GetPetByIdUseCase } from '../get-pet-by-id'
 
-export function makeRegisterPetUseCase() {
+export function makeGetPetByIdUseCase() {
   const petsRepository = new PrismaPetsRepository()
 
-  const useCase = new RegisterPetUseCase(petsRepository)
+  const useCase = new GetPetByIdUseCase(petsRepository)
 
   return useCase
 }

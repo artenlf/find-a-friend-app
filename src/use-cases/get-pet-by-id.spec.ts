@@ -1,22 +1,22 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryPetsRepository } from '../repositories/in-memory/in-memory-pets-repository'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
-import { GetPetProfileUseCase } from './get-pet-profile'
+import { GetPetByIdUseCase } from './get-pet-by-id'
 
 let petsRepository: InMemoryPetsRepository
-let sut: GetPetProfileUseCase
+let sut: GetPetByIdUseCase
 
 describe('Get pet Profile Use Case', () => {
   beforeEach(() => {
     petsRepository = new InMemoryPetsRepository()
-    sut = new GetPetProfileUseCase(petsRepository)
+    sut = new GetPetByIdUseCase(petsRepository)
   })
 
   it('should be able to get the Pet profile', async () => {
     const registeredPet = await petsRepository.create({
       type: 'dog',
       name: 'bidu',
-      about: 'dog legal',
+      about: 'good dog',
       age: 'young',
       size: 'small',
       energy_level: 'medium',
