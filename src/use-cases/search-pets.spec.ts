@@ -44,7 +44,7 @@ describe('Search Pets Use Case', () => {
       query: 'Thomas',
     })
 
-    expect(pets).toHaveLength(1)
+    // expect(pets).toHaveLength(1)
     expect(pets).toEqual([expect.objectContaining({ name: 'Thomas' })])
   })
 })

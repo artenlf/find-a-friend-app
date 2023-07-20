@@ -1,4 +1,13 @@
-import { Pet, Prisma } from '@prisma/client'
+import {
+  Age,
+  Energy_Level,
+  Environment,
+  Independency_Level,
+  Pet,
+  Prisma,
+  Size,
+  Type,
+} from '@prisma/client'
 import { randomUUID } from 'node:crypto'
 import { PetsRepository } from '../pets-repository'
 
@@ -36,7 +45,16 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet
   }
 
-  async searchMany(query: string) {
+  async searchMany(
+    query:
+      | string
+      | Type
+      | Age
+      | Size
+      | Energy_Level
+      | Independency_Level
+      | Environment,
+  ) {
     return this.pets.filter((pet) => pet.name.includes(query))
   }
 }

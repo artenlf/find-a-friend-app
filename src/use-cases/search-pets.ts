@@ -1,8 +1,23 @@
 import { PetsRepository } from '@/repositories/pets-repository'
-import { Pet } from '@prisma/client'
+import {
+  Age,
+  Energy_Level,
+  Environment,
+  Independency_Level,
+  Pet,
+  Size,
+  Type,
+} from '@prisma/client'
 
 interface SearchPetsUseCaseRequest {
-  query: string
+  query:
+    | string
+    | Type
+    | Age
+    | Size
+    | Energy_Level
+    | Independency_Level
+    | Environment
 }
 
 interface SearchPetsUseCaseResponse {
