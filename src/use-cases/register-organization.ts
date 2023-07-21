@@ -6,7 +6,7 @@ import { OrganizationAlreadyExistsError } from './errors/organization-already-ex
 interface RegisterOrganizationUseCaseRequest {
   title: string
   email: string
-  zipcode: string
+  zip_code: string
   address: string
   phone: string
   password: string
@@ -25,7 +25,7 @@ export class RegisterOrganizationUseCase {
   async execute({
     title,
     email,
-    zipcode,
+    zip_code,
     address,
     phone,
     password,
@@ -44,7 +44,7 @@ export class RegisterOrganizationUseCase {
     const organization = await this.organizationsRepository.create({
       title,
       email,
-      zipcode,
+      zip_code,
       address,
       phone,
       password_hash,

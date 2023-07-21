@@ -12,7 +12,7 @@ export class InMemoryOrganizationsRepository
       id: randomUUID(),
       title: data.title,
       email: data.email,
-      zipcode: data.zipcode,
+      zip_code: data.zip_code,
       address: data.address,
       phone: data.phone,
       password_hash: data.password_hash,

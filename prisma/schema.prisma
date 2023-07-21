@@ -69,7 +69,7 @@ model Organization {
   id            String  @id @default(uuid())
   title         String
   email         String  @unique
-  zipcode       String
+  zip_code      String
   address       String
   phone         String
   password_hash String

@@ -39,7 +39,7 @@ CREATE TABLE "organizations" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "zipcode" TEXT NOT NULL,
+    "zip_code" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "password_hash" TEXT NOT NULL,

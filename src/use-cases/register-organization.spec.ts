@@ -16,7 +16,7 @@ describe('Register Organization Use Case', () => {
     const { organization } = await sut.execute({
       title: 'John Doe Organization',
       email: 'johndoe@example.com',
-      zipcode: '12345',
+      zip_code: '12345',
       address: 'street address 12345',
       phone: '12345678',
       password: '123456',
@@ -34,7 +34,7 @@ describe('Register Organization Use Case', () => {
     await sut.execute({
       title: 'John Doe Organization',
       email,
-      zipcode: '12345',
+      zip_code: '12345',
       address: 'street address 12345',
       phone: '12345678',
       password: '123456',
@@ -47,7 +47,7 @@ describe('Register Organization Use Case', () => {
       sut.execute({
         title: 'John Doe Organization',
         email,
-        zipcode: '12345',
+        zip_code: '12345',
         address: 'street address 12345',
         phone: '12345678',
         password: '123456',
@@ -62,7 +62,7 @@ describe('Register Organization Use Case', () => {
     const { organization } = await sut.execute({
       title: 'John Doe Organization',
       email: 'johndoe@example.com',
-      zipcode: '12345',
+      zip_code: '12345',
       address: 'street address 12345',
       phone: '12345678',
       password: '123456',
