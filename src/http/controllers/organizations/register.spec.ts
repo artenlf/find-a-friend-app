@@ -17,10 +17,10 @@ describe('Register Organization (e2e)', () => {
       email: 'johndoe@example.com',
       zip_code: '12345678',
       address: '39, 5th street',
+      city: 'Campinas',
+      state: 'SP',
       phone: '12345678',
       password: '12345678',
-      latitude: -22.9019746,
-      longitude: -47.0582353,
     })
 
     expect(response.statusCode).toEqual(201)

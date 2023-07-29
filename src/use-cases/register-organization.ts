@@ -8,10 +8,10 @@ interface RegisterOrganizationUseCaseRequest {
   email: string
   zip_code: string
   address: string
+  city: string
+  state: string
   phone: string
   password: string
-  latitude: number
-  longitude: number
   pets: Pet[]
 }
 
@@ -27,10 +27,10 @@ export class RegisterOrganizationUseCase {
     email,
     zip_code,
     address,
+    city,
+    state,
     phone,
     password,
-    latitude,
-    longitude,
   }: RegisterOrganizationUseCaseRequest): Promise<RegisterOrganizationUseCaseResponse> {
     const password_hash = await hash(password, 6)
 
@@ -46,10 +46,10 @@ export class RegisterOrganizationUseCase {
       email,
       zip_code,
       address,
+      city,
+      state,
       phone,
       password_hash,
-      latitude,
-      longitude,
     })
 
     return { organization }

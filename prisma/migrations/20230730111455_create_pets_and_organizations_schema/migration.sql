@@ -41,10 +41,10 @@ CREATE TABLE "organizations" (
     "email" TEXT NOT NULL,
     "zip_code" TEXT NOT NULL,
     "address" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "state" TEXT NOT NULL,
     "phone" TEXT NOT NULL,
     "password_hash" TEXT NOT NULL,
-    "latitude" DECIMAL(65,30) NOT NULL,
-    "longitude" DECIMAL(65,30) NOT NULL,
 
     CONSTRAINT "organizations_pkey" PRIMARY KEY ("id")
 );

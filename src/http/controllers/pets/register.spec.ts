@@ -19,10 +19,10 @@ describe('Register Pet (e2e)', () => {
         email: 'johndoe@example.com',
         zip_code: '12345678',
         address: '39, 5th street',
+        city: 'Campinas',
+        state: 'SP',
         phone: '12345678',
         password_hash: '12345678',
-        latitude: -22.9019746,
-        longitude: -47.0582353,
       },
     })
 

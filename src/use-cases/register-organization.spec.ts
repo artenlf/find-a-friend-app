@@ -18,10 +18,10 @@ describe('Register Organization Use Case', () => {
       email: 'johndoe@example.com',
       zip_code: '12345',
       address: 'street address 12345',
+      city: 'Campinas',
+      state: 'SP',
       phone: '12345678',
       password: '123456',
-      latitude: -22.9019746,
-      longitude: -47.0582353,
       pets: [],
     })
 
@@ -36,10 +36,10 @@ describe('Register Organization Use Case', () => {
       email,
       zip_code: '12345',
       address: 'street address 12345',
+      city: 'Campinas',
+      state: 'SP',
       phone: '12345678',
       password: '123456',
-      latitude: -22.9019746,
-      longitude: -47.0582353,
       pets: [],
     })
 
@@ -49,10 +49,10 @@ describe('Register Organization Use Case', () => {
         email,
         zip_code: '12345',
         address: 'street address 12345',
+        city: 'Campinas',
+        state: 'SP',
         phone: '12345678',
         password: '123456',
-        latitude: -22.9019746,
-        longitude: -47.0582353,
         pets: [],
       }),
     ).rejects.toBeInstanceOf(OrganizationAlreadyExistsError)
@@ -64,10 +64,10 @@ describe('Register Organization Use Case', () => {
       email: 'johndoe@example.com',
       zip_code: '12345',
       address: 'street address 12345',
+      city: 'Campinas',
+      state: 'SP',
       phone: '12345678',
       password: '123456',
-      latitude: -22.9019746,
-      longitude: -47.0582353,
       pets: [],
     })
 

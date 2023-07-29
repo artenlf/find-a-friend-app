@@ -14,10 +14,10 @@ export class InMemoryOrganizationsRepository
       email: data.email,
       zip_code: data.zip_code,
       address: data.address,
+      city: data.city,
+      state: data.state,
       phone: data.phone,
       password_hash: data.password_hash,
-      latitude: new Prisma.Decimal(data.latitude.toString()),
-      longitude: new Prisma.Decimal(data.longitude.toString()),
     }
 
     this.organizations.push(organization)

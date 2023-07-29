@@ -8,26 +8,14 @@ export async function register(req: FastifyRequest, reply: FastifyReply) {
     email: z.string().email(),
     zip_code: z.string().min(8),
     address: z.string(),
+    city: z.string(),
+    state: z.string(),
     phone: z.string().min(8),
     password: z.string().min(6),
-    latitude: z.number().refine((value) => {
-      return Math.abs(value) <= 90
-    }),
-    longitude: z.number().refine((value) => {
-      return Math.abs(value) <= 180
-    }),
   })
 
-  const {
-    title,
-    email,
-    zip_code,
-    address,
-    phone,
-    password,
-    latitude,
-    longitude,
-  } = registerBodySchema.parse(req.body)
+  const { title, email, zip_code, address, city, state, phone, password } =
+    registerBodySchema.parse(req.body)
 
   const registerOrganizationUseCase = makeRegisterOrganizationUseCase()
 
@@ -36,10 +24,10 @@ export async function register(req: FastifyRequest, reply: FastifyReply) {
     email,
     zip_code,
     address,
+    city,
+    state,
     phone,
     password,
-    latitude,
-    longitude,
     pets: [],
   })
 
