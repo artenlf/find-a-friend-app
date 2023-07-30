@@ -37,6 +37,14 @@ export class InMemoryOrganizationsRepository
     return organization
   }
 
+  async findManyByCity(city: string) {
+    const orgs = this.organizations.filter(
+      (organization) => organization.city === city,
+    )
+
+    return orgs
+  }
+
   async findByEmail(email: string) {
     const organization = this.organizations.find(
       (organization) => organization.email === email,

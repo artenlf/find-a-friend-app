@@ -22,7 +22,6 @@ describe('Register Organization Use Case', () => {
       state: 'SP',
       phone: '12345678',
       password: '123456',
-      pets: [],
     })
 
     expect(organization.id).toEqual(expect.any(String))
@@ -40,7 +39,6 @@ describe('Register Organization Use Case', () => {
       state: 'SP',
       phone: '12345678',
       password: '123456',
-      pets: [],
     })
 
     await expect(() =>
@@ -53,7 +51,6 @@ describe('Register Organization Use Case', () => {
         state: 'SP',
         phone: '12345678',
         password: '123456',
-        pets: [],
       }),
     ).rejects.toBeInstanceOf(OrganizationAlreadyExistsError)
   })
@@ -68,7 +65,6 @@ describe('Register Organization Use Case', () => {
       state: 'SP',
       phone: '12345678',
       password: '123456',
-      pets: [],
     })
 
     const isPasswordCorrectlyHashed = await compare(

@@ -9,9 +9,12 @@ import {
   Type,
 } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
+import { OrganizationsRepository } from '../organizations-repository'
 import { PetsRepository } from '../pets-repository'
 
 export class InMemoryPetsRepository implements PetsRepository {
+  constructor(private organizationsRepository: OrganizationsRepository) {}
+
   public pets: Pet[] = []
 
   async create(data: Prisma.PetCreateManyInput) {
@@ -43,6 +46,20 @@ export class InMemoryPetsRepository implements PetsRepository {
     }
 
     return pet
+  }
+
+  async findManyByCity(city: string) {
+    const organizations = await this.organizationsRepository.findManyByCity(
+      city,
+    )
+
+    const petsListByOrganizationsInCity = this.pets.filter((pet) => {
+      return organizations.find(
+        (organization) => organization.id === pet.organization_id,
+      )
+    })
+
+    return petsListByOrganizationsInCity
   }
 
   async searchMany(

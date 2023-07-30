@@ -1,13 +1,16 @@
+import { InMemoryOrganizationsRepository } from '@/repositories/in-memory/in-memory-organizations-repository'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryPetsRepository } from '../repositories/in-memory/in-memory-pets-repository'
 import { RegisterPetUseCase } from './register-pet'
 
+let organizationsRepository: InMemoryOrganizationsRepository
 let petsRepository: InMemoryPetsRepository
 let sut: RegisterPetUseCase
 
 describe('Register Pet Use Case', () => {
   beforeEach(() => {
-    petsRepository = new InMemoryPetsRepository()
+    organizationsRepository = new InMemoryOrganizationsRepository()
+    petsRepository = new InMemoryPetsRepository(organizationsRepository)
     sut = new RegisterPetUseCase(petsRepository)
   })
   it('should be able to register a pet', async () => {

@@ -1,5 +1,5 @@
 import { OrganizationsRepository } from '@/repositories/organizations-repository'
-import { Organization, Pet } from '@prisma/client'
+import { Organization } from '@prisma/client'
 import { hash } from 'bcryptjs'
 import { OrganizationAlreadyExistsError } from './errors/organization-already-exists-error'
 
@@ -12,7 +12,6 @@ interface RegisterOrganizationUseCaseRequest {
   state: string
   phone: string
   password: string
-  pets: Pet[]
 }
 
 interface RegisterOrganizationUseCaseResponse {
