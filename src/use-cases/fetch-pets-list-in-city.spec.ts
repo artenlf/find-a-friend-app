@@ -15,7 +15,7 @@ describe('Fetch Pets List in City Use Case', () => {
   })
 
   it('should be able to fetch a list of pets in the city', async () => {
-    const testOrganization = await organizationsRepository.create({
+    const organization = await organizationsRepository.create({
       title: 'John Doe Organization',
       email: 'johndoe@example.com',
       zip_code: '12345',
@@ -37,7 +37,7 @@ describe('Fetch Pets List in City Use Case', () => {
       environment: 'small',
       pictures: [''],
       requirements: ['have a friend named Jerry'],
-      organization_id: testOrganization.id,
+      organization_id: organization.id,
     })
 
     await petsRepository.create({
@@ -51,10 +51,10 @@ describe('Fetch Pets List in City Use Case', () => {
       environment: 'medium',
       pictures: [''],
       requirements: [''],
-      organization_id: testOrganization.id,
+      organization_id: organization.id,
     })
 
-    const testOrganization2 = await organizationsRepository.create({
+    const organization2 = await organizationsRepository.create({
       title: 'Ellen Ripley Organization',
       email: 'ellenripley@example.com',
       zip_code: '67890',
@@ -76,7 +76,7 @@ describe('Fetch Pets List in City Use Case', () => {
       environment: 'large',
       pictures: [''],
       requirements: ['be on board with dumb people'],
-      organization_id: testOrganization2.id,
+      organization_id: organization2.id,
     })
 
     await petsRepository.create({
@@ -90,10 +90,10 @@ describe('Fetch Pets List in City Use Case', () => {
       environment: 'large',
       pictures: [''],
       requirements: ['be the smartest animal on a ship'],
-      organization_id: testOrganization2.id,
+      organization_id: organization2.id,
     })
 
-    const testOrganization3 = await organizationsRepository.create({
+    const organization3 = await organizationsRepository.create({
       title: 'Arten Organization',
       email: 'arten@example.com',
       zip_code: '12345',
@@ -115,7 +115,7 @@ describe('Fetch Pets List in City Use Case', () => {
       environment: 'small',
       pictures: [''],
       requirements: [''],
-      organization_id: testOrganization3.id,
+      organization_id: organization3.id,
     })
 
     await petsRepository.create({
@@ -129,7 +129,7 @@ describe('Fetch Pets List in City Use Case', () => {
       environment: 'medium',
       pictures: [''],
       requirements: [''],
-      organization_id: testOrganization3.id,
+      organization_id: organization3.id,
     })
 
     const { pets } = await sut.execute({
