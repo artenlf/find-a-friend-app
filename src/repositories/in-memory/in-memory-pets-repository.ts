@@ -1,13 +1,4 @@
-import {
-  Age,
-  Energy_Level,
-  Environment,
-  Independency_Level,
-  Pet,
-  Prisma,
-  Size,
-  Type,
-} from '@prisma/client'
+import { Pet, Prisma } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
 import { OrganizationsRepository } from '../organizations-repository'
 import { PetsRepository } from '../pets-repository'
@@ -62,16 +53,19 @@ export class InMemoryPetsRepository implements PetsRepository {
     return petsListByOrganizationsInCity
   }
 
-  async searchMany(
-    query:
-      | string
-      | Type
-      | Age
-      | Size
-      | Energy_Level
-      | Independency_Level
-      | Environment,
-  ) {
-    return this.pets.filter((pet) => pet.name.includes(query))
+  async searchMany(query: string | Pet) {
+    const lowerCaseQuery = query.toString().toLowerCase()
+
+    return this.pets.filter((pet) => {
+      for (const value of Object.values(pet)) {
+        if (
+          typeof value === 'string' &&
+          value.toLowerCase().includes(lowerCaseQuery)
+        ) {
+          return true
+        }
+      }
+      return false
+    })
   }
 }

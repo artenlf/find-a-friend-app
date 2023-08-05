@@ -1,4 +1,5 @@
 import { InMemoryOrganizationsRepository } from '@/repositories/in-memory/in-memory-organizations-repository'
+import { randomUUID } from 'node:crypto'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemoryPetsRepository } from '../repositories/in-memory/in-memory-pets-repository'
 import { RegisterPetUseCase } from './register-pet'
@@ -15,6 +16,7 @@ describe('Register Pet Use Case', () => {
   })
   it('should be able to register a pet', async () => {
     const { pet } = await sut.execute({
+      id: randomUUID(),
       type: 'cat',
       name: 'Thomas',
       about: 'Friendly cat',

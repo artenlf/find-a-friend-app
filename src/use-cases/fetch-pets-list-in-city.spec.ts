@@ -137,5 +137,10 @@ describe('Fetch Pets List in City Use Case', () => {
     })
 
     expect(pets).toHaveLength(4)
+    expect(pets).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ name: 'Michael Jordan' }),
+      ]),
+    )
   })
 })

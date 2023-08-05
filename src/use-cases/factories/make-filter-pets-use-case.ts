@@ -1,10 +1,10 @@
 import { PrismaPetsRepository } from '@/repositories/prisma/prisma-pets-repository'
-import { SearchPetsUseCase } from '../search-pets'
+import { FilterPetsUseCase } from '../filter-pets'
 
-export function makeSearchPetsUseCase() {
+export function makeFilterPetsUseCase() {
   const petsRepository = new PrismaPetsRepository()
 
-  const useCase = new SearchPetsUseCase(petsRepository)
+  const useCase = new FilterPetsUseCase(petsRepository)
 
   return useCase
 }
