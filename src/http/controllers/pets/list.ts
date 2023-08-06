@@ -4,14 +4,17 @@ import { z } from 'zod'
 
 export async function list(req: FastifyRequest, reply: FastifyReply) {
   const fetchPetsListInCityParamsSchema = z.object({
-    city: z.string(),
+    city: z
+      .string({ required_error: 'É necessário informar uma cidade.' })
+      .trim()
+      .nonempty({ message: 'É necessário informar uma cidade.' }),
   })
 
   const { city } = fetchPetsListInCityParamsSchema.parse(req.params)
 
-  const fetchPetsListInCity = makeFetchPetsListInCityUseCase()
+  const fetchPetsListInCityUseCase = makeFetchPetsListInCityUseCase()
 
-  const { pets } = await fetchPetsListInCity.execute({
+  const { pets } = await fetchPetsListInCityUseCase.execute({
     city,
   })
 

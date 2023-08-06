@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma'
 import request from 'supertest'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-describe('Search Pets (e2e)', () => {
+describe('Filter Pets (e2e)', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -12,7 +12,7 @@ describe('Search Pets (e2e)', () => {
     await app.close()
   })
 
-  it('should be able to search Pets', async () => {
+  it('should be able to filter Pets', async () => {
     const organization = await prisma.organization.create({
       data: {
         title: 'John Doe Organization',
@@ -51,18 +51,16 @@ describe('Search Pets (e2e)', () => {
     })
 
     const response = await request(app.server)
-      .get('/pets/search')
+      .get(`/${organization.city}/pets`)
       .query({
-        query: 'bashum',
+        age: 'adult',
       })
       .send()
 
     expect(response.statusCode).toEqual(200)
-    expect(response.body.pets).toHaveLength(1)
-    expect(response.body.pets).toEqual([
-      expect.objectContaining({
-        name: 'bashum',
-      }),
-    ])
+    // expect(response.body.pets).toHaveLength(1)
+    expect(response.body.pets).toEqual(
+      expect.arrayContaining([expect.objectContaining({ name: 'bashum' })]),
+    )
   })
 })

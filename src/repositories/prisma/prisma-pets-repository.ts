@@ -28,12 +28,19 @@ export class PrismaPetsRepository implements PetsRepository {
     return pets
   }
 
-  async searchMany(query?: PetParams) {
+  async searchMany(city: string, query?: PetParams) {
     const pets = await prisma.pet.findMany({
       where: {
+        organization: {
+          city: {
+            equals: city,
+            mode: 'insensitive',
+          },
+        },
         ...query,
       },
     })
+
     return pets
   }
 

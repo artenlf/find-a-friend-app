@@ -2,6 +2,7 @@ import { Pet, Prisma } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
 import { OrganizationsRepository } from '../organizations-repository'
 import { PetsRepository } from '../pets-repository'
+import { PetParams } from '../prisma/utils/pet-params'
 
 export class InMemoryPetsRepository implements PetsRepository {
   constructor(private organizationsRepository: OrganizationsRepository) {}
@@ -53,7 +54,7 @@ export class InMemoryPetsRepository implements PetsRepository {
     return petsListByOrganizationsInCity
   }
 
-  async searchMany(query: string | Pet) {
+  async searchMany(city: string, query: PetParams) {
     const lowerCaseQuery = query.toString().toLowerCase()
 
     return this.pets.filter((pet) => {
