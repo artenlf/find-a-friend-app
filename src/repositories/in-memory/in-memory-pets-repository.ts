@@ -54,19 +54,27 @@ export class InMemoryPetsRepository implements PetsRepository {
     return petsListByOrganizationsInCity
   }
 
-  async searchMany(city: string, query: PetParams) {
-    const lowerCaseQuery = query.toString().toLowerCase()
+  async searchMany(city: string, params?: PetParams) {
+    const orgs = await this.organizationsRepository.findManyByCity(city)
 
-    return this.pets.filter((pet) => {
-      for (const value of Object.values(pet)) {
-        if (
-          typeof value === 'string' &&
-          value.toLowerCase().includes(lowerCaseQuery)
-        ) {
-          return true
-        }
-      }
-      return false
+    const petsByOrgsInCity = this.pets.filter((pet) => {
+      return orgs.find((org) => org.id === pet.organization_id)
     })
+
+    if (!params) {
+      return petsByOrgsInCity
+    }
+    const petFiltered = petsByOrgsInCity.filter(
+      (pet) =>
+        (!params.type || pet.type === params?.type) &&
+        (!params.age || pet.age === params?.age) &&
+        (!params.size || pet.size === params?.size) &&
+        (!params.energy_level || pet.energy_level === params?.energy_level) &&
+        (!params.independency_level ||
+          pet.independency_level === params?.independency_level) &&
+        (!params.environment || pet.environment === params?.environment),
+    )
+
+    return petFiltered
   }
 }

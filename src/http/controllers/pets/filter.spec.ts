@@ -51,14 +51,14 @@ describe('Filter Pets (e2e)', () => {
     })
 
     const response = await request(app.server)
-      .get(`/${organization.city}/pets`)
+      .get(`/${organization.city}/pets/filter`)
       .query({
         age: 'adult',
       })
       .send()
 
     expect(response.statusCode).toEqual(200)
-    // expect(response.body.pets).toHaveLength(1)
+    expect(response.body.pets).toHaveLength(1)
     expect(response.body.pets).toEqual(
       expect.arrayContaining([expect.objectContaining({ name: 'bashum' })]),
     )

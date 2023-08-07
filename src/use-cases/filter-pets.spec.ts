@@ -15,6 +15,17 @@ describe('Search Pets Use Case', () => {
   })
 
   it('should be able to search for pets', async () => {
+    const organization = await organizationsRepository.create({
+      title: 'John Doe Organization',
+      email: 'johndoe@example.com',
+      zip_code: '12345',
+      address: '39, 5th street',
+      city: 'Campinas',
+      state: 'SP',
+      phone: '12345678',
+      password_hash: '123456',
+    })
+
     await petsRepository.create({
       type: 'cat',
       name: 'Thomas',
@@ -26,21 +37,7 @@ describe('Search Pets Use Case', () => {
       environment: 'small',
       pictures: [''],
       requirements: ['have a friend named Jerry'],
-      organization_id: '',
-    })
-
-    await petsRepository.create({
-      type: 'dog',
-      name: 'Bidu',
-      about: 'good dog',
-      age: 'young',
-      size: 'small',
-      energy_level: 'medium',
-      independency_level: 'medium',
-      environment: 'medium',
-      pictures: [''],
-      requirements: [''],
-      organization_id: '',
+      organization_id: organization.id,
     })
 
     await petsRepository.create({
@@ -54,11 +51,12 @@ describe('Search Pets Use Case', () => {
       environment: 'medium',
       pictures: [''],
       requirements: [''],
-      organization_id: '',
+      organization_id: organization.id,
     })
 
     const { pets } = await sut.execute({
-      query: 'large',
+      city: 'Campinas',
+      query: { size: 'large' },
     })
 
     expect(pets).toHaveLength(1)
