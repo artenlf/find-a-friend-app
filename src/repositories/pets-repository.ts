@@ -1,5 +1,5 @@
+import { PetParams } from '@/interfaces/pet-params'
 import { Pet, Prisma } from '@prisma/client'
-import { PetParams } from './prisma/utils/pet-params'
 
 export interface PetsRepository {
   searchMany(city: string, query: PetParams): Promise<Pet[]>

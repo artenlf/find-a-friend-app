@@ -1,5 +1,6 @@
+import { PetParams } from '@/interfaces/pet-params'
 import { PetsRepository } from '@/repositories/pets-repository'
-import { PetParams } from '@/repositories/prisma/utils/pet-params'
+
 import { Pet } from '@prisma/client'
 
 interface FilterPetsUseCaseRequest {

@@ -1,8 +1,8 @@
+import { PetParams } from '@/interfaces/pet-params'
 import { Pet, Prisma } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
 import { OrganizationsRepository } from '../organizations-repository'
 import { PetsRepository } from '../pets-repository'
-import { PetParams } from '../prisma/utils/pet-params'
 
 export class InMemoryPetsRepository implements PetsRepository {
   constructor(private organizationsRepository: OrganizationsRepository) {}
