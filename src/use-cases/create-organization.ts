@@ -3,7 +3,7 @@ import { Organization } from '@prisma/client'
 import { hash } from 'bcryptjs'
 import { OrganizationAlreadyExistsError } from './errors/organization-already-exists-error'
 
-interface RegisterOrganizationUseCaseRequest {
+interface CreateOrganizationUseCaseRequest {
   title: string
   email: string
   zip_code: string
@@ -14,11 +14,11 @@ interface RegisterOrganizationUseCaseRequest {
   password: string
 }
 
-interface RegisterOrganizationUseCaseResponse {
+interface CreateOrganizationUseCaseResponse {
   organization: Organization
 }
 
-export class RegisterOrganizationUseCase {
+export class CreateOrganizationUseCase {
   constructor(private organizationsRepository: OrganizationsRepository) {}
 
   async execute({
@@ -30,7 +30,7 @@ export class RegisterOrganizationUseCase {
     state,
     phone,
     password,
-  }: RegisterOrganizationUseCaseRequest): Promise<RegisterOrganizationUseCaseResponse> {
+  }: CreateOrganizationUseCaseRequest): Promise<CreateOrganizationUseCaseResponse> {
     const password_hash = await hash(password, 6)
 
     const organizationWithSameEmail =

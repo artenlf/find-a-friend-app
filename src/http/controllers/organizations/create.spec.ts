@@ -2,7 +2,7 @@ import { app } from '@/app'
 import request from 'supertest'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-describe('Register Organization (e2e)', () => {
+describe('Create Organization (e2e)', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -11,7 +11,7 @@ describe('Register Organization (e2e)', () => {
     await app.close()
   })
 
-  it('should be able to register a Organization', async () => {
+  it('should be able to create an Organization', async () => {
     const response = await request(app.server).post('/organizations').send({
       title: 'John Doe Organization',
       email: 'johndoe@example.com',

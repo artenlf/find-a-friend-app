@@ -1,18 +1,18 @@
 import { InMemoryOrganizationsRepository } from '@/repositories/in-memory/in-memory-organizations-repository'
 import { compare } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { CreateOrganizationUseCase } from './create-organization'
 import { OrganizationAlreadyExistsError } from './errors/organization-already-exists-error'
-import { RegisterOrganizationUseCase } from './register-organization'
 
 let organizationsRepository: InMemoryOrganizationsRepository
-let sut: RegisterOrganizationUseCase
+let sut: CreateOrganizationUseCase
 
-describe('Register Organization Use Case', () => {
+describe('Create Organization Use Case', () => {
   beforeEach(() => {
     organizationsRepository = new InMemoryOrganizationsRepository()
-    sut = new RegisterOrganizationUseCase(organizationsRepository)
+    sut = new CreateOrganizationUseCase(organizationsRepository)
   })
-  it('should be able to register a organization', async () => {
+  it('should be able to create an organization', async () => {
     const { organization } = await sut.execute({
       title: 'John Doe Organization',
       email: 'johndoe@example.com',
@@ -27,7 +27,7 @@ describe('Register Organization Use Case', () => {
     expect(organization.id).toEqual(expect.any(String))
   })
 
-  it('should not be able to register an organization with the same email twice', async () => {
+  it('should not be able to create an organization with the same email twice', async () => {
     const email = 'johndoe@example.com'
 
     await sut.execute({
@@ -55,7 +55,7 @@ describe('Register Organization Use Case', () => {
     ).rejects.toBeInstanceOf(OrganizationAlreadyExistsError)
   })
 
-  it('should hash organization password upon register', async () => {
+  it('should hash organization password upon creation', async () => {
     const { organization } = await sut.execute({
       title: 'John Doe Organization',
       email: 'johndoe@example.com',

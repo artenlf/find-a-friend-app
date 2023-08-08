@@ -1,9 +1,9 @@
-import { makeRegisterOrganizationUseCase } from '@/use-cases/factories/make-register-organization-use-case'
+import { makeCreateOrganizationUseCase } from '@/use-cases/factories/make-create-organization-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
-export async function register(req: FastifyRequest, reply: FastifyReply) {
-  const registerBodySchema = z.object({
+export async function create(req: FastifyRequest, reply: FastifyReply) {
+  const createBodySchema = z.object({
     title: z.string(),
     email: z.string().email(),
     zip_code: z.string().min(8),
@@ -15,11 +15,11 @@ export async function register(req: FastifyRequest, reply: FastifyReply) {
   })
 
   const { title, email, zip_code, address, city, state, phone, password } =
-    registerBodySchema.parse(req.body)
+    createBodySchema.parse(req.body)
 
-  const registerOrganizationUseCase = makeRegisterOrganizationUseCase()
+  const createOrganizationUseCase = makeCreateOrganizationUseCase()
 
-  await registerOrganizationUseCase.execute({
+  await createOrganizationUseCase.execute({
     title,
     email,
     zip_code,
@@ -28,7 +28,6 @@ export async function register(req: FastifyRequest, reply: FastifyReply) {
     state,
     phone,
     password,
-    pets: [],
   })
 
   return reply.status(201).send()
