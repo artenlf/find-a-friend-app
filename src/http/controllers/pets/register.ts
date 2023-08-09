@@ -1,6 +1,5 @@
 import { makeRegisterPetUseCase } from '@/use-cases/factories/make-register-pet-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { randomUUID } from 'node:crypto'
 import { z } from 'zod'
 
 export async function register(req: FastifyRequest, reply: FastifyReply) {
@@ -31,7 +30,6 @@ export async function register(req: FastifyRequest, reply: FastifyReply) {
   const registerPetUseCase = makeRegisterPetUseCase()
 
   await registerPetUseCase.execute({
-    id: randomUUID(),
     type,
     name,
     about,
